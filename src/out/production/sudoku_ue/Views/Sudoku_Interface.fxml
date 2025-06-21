@@ -1,0 +1,1033 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Sudoku_Interface_Controller">
+    <GridPane id="padGrid_Id" fx:id="padGrid_fxId" cache="true" layoutX="788.0" layoutY="434.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="200.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+        <cursor>
+            <Cursor fx:constant="CLOSED_HAND" />
+        </cursor>
+        <effect>
+            <Blend />
+        </effect>
+        <children>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#OnActionButtonPad" text="1">
+                <font>
+                    <Font size="27.0" />
+                </font>
+            </Button>
+            <Button alignment="CENTER" layoutX="10.0" layoutY="18.0" mnemonicParsing="false" onAction="#OnActionButtonPad" text="2" GridPane.columnIndex="1">
+                <font>
+                    <Font size="27.0" />
+                </font>
+            </Button>
+            <Button alignment="CENTER" layoutX="10.0" layoutY="18.0" mnemonicParsing="false" onAction="#OnActionButtonPad" text="3" GridPane.columnIndex="2">
+                <font>
+                    <Font size="27.0" />
+                </font>
+            </Button>
+            <Button alignment="CENTER" layoutX="10.0" layoutY="18.0" mnemonicParsing="false" onAction="#OnActionButtonPad" text="6" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                <font>
+                    <Font size="27.0" />
+                </font>
+            </Button>
+            <Button alignment="CENTER" layoutX="10.0" layoutY="18.0" mnemonicParsing="false" onAction="#OnActionButtonPad" text="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <font>
+                    <Font size="27.0" />
+                </font>
+            </Button>
+            <Button alignment="CENTER" layoutX="10.0" layoutY="18.0" mnemonicParsing="false" onAction="#OnActionButtonPad" text="4" GridPane.rowIndex="1">
+                <font>
+                    <Font size="27.0" />
+                </font>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#OnActionButtonPad" text="7" GridPane.rowIndex="2">
+                <font>
+                    <Font size="27.0" />
+                </font>
+            </Button>
+            <Button alignment="CENTER" layoutX="10.0" layoutY="18.0" mnemonicParsing="false" onAction="#OnActionButtonPad" text="9" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                <font>
+                    <Font size="27.0" />
+                </font>
+            </Button>
+            <Button alignment="CENTER" layoutX="10.0" layoutY="18.0" mnemonicParsing="false" onAction="#OnActionButtonPad" text="8" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <font>
+                    <Font size="27.0" />
+                </font>
+            </Button>
+        </children>
+    </GridPane>
+    <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="59.0" layoutY="80.0" prefHeight="75.0" prefWidth="600.0" text="SUDOKU" textAlignment="CENTER" textOverrun="CLIP">
+        <font>
+            <Font name="System Bold Italic" size="96.0" />
+        </font>
+        <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+                <stops>
+                    <Stop>
+                        <color>
+                            <Color red="0.004142300225794315" green="0.07835850864648819" blue="0.8947368264198303" />
+                        </color>
+                    </Stop>
+                    <Stop offset="1.0">
+                        <color>
+                            <Color red="0.9078947305679321" green="0.021016081795096397" blue="0.021016081795096397" />
+                        </color>
+                    </Stop>
+                </stops>
+            </LinearGradient>
+        </textFill>
+    </Label>
+    <Button layoutX="788.0" layoutY="634.0" mnemonicParsing="false" onAction="#OnActionSuppValue" prefHeight="52.0" prefWidth="188.0" text="0">
+        <font>
+            <Font size="26.0" />
+        </font>
+    </Button>
+   <Button layoutX="736.0" layoutY="336.0" mnemonicParsing="false" onAction="#onActionIsSolved" prefHeight="91.0" prefWidth="305.0" text="is Solved?">
+      <font>
+         <Font size="48.0" />
+      </font>
+   </Button>
+   <GridPane id="sudokuGrid_Id" fx:id="sudokuGrid_fxid" gridLinesVisible="true" layoutX="59.0" layoutY="209.0" prefHeight="650.0" prefWidth="650.0">
+     <columnConstraints>
+       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+     </columnConstraints>
+     <rowConstraints>
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+     </rowConstraints>
+      <children>
+         <BorderPane layoutX="90.0" layoutY="10.0" onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane layoutX="10.0" layoutY="10.0" onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane layoutX="82.0" layoutY="10.0" onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane layoutX="10.0" layoutY="10.0" onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="0">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane layoutX="10.0" layoutY="10.0" onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="0">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane layoutX="10.0" layoutY="10.0" onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="0">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane layoutX="10.0" layoutY="10.0" onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="0">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane layoutX="10.0" layoutY="10.0" onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="0">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane layoutX="10.0" layoutY="10.0" onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="0">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="1.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="1">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="1">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane layoutX="514.0" layoutY="83.0" onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="1">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="2">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="2">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="2">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="3">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="3">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="3">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="4">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="4">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="4">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="5">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="5">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="5">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="5">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="5">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="6">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="6">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="6">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="6">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="6">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="6">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="6">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="7">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="7">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="7">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="7">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="7">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="7">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="7">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="8">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="8">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="8">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="8">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="8">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="8">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="8">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+         <BorderPane onMouseClicked="#OnMouseClickedCell" onMouseEntered="#OnMouseEnteredCell" onMouseExited="#OnMouseExitedCell" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="8">
+            <center>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Text>
+            </center>
+         </BorderPane>
+      </children>
+   </GridPane>
+   <Button layoutX="831.0" layoutY="708.0" mnemonicParsing="false" onAction="#OnActionOkSudoku" prefHeight="66.0" prefWidth="103.0" text="CHECK" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0f1011" height="4.0" layoutX="59.0" layoutY="425.0" stroke="BLACK" strokeType="INSIDE" width="650.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0f1011" height="4.0" layoutX="59.0" layoutY="643.0" stroke="BLACK" strokeType="INSIDE" width="650.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0f1011" height="4.0" layoutX="59.0" layoutY="857.0" stroke="BLACK" strokeType="INSIDE" width="650.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0f1011" height="4.0" layoutX="59.0" layoutY="209.0" stroke="BLACK" strokeType="INSIDE" width="650.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0f1011" height="4.0" layoutX="383.0" layoutY="532.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="650.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0f1011" height="4.0" layoutX="167.0" layoutY="532.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="650.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0f1011" height="4.0" layoutX="-51.0" layoutY="532.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="650.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0f1011" height="4.0" layoutX="-267.0" layoutY="532.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="650.0" />
+   <VBox alignment="TOP_CENTER" layoutX="1061.0" layoutY="365.0" prefHeight="307.0" prefWidth="426.0" spacing="10.0">
+      <children>
+         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="384.0" text="Apply rules one by one">
+            <font>
+               <Font size="30.0" />
+            </font>
+         </Label>
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <VBox alignment="TOP_CENTER" prefHeight="186.0" prefWidth="213.0" spacing="10.0">
+                  <children>
+                     <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#applyLastEmptyRule" prefHeight="49.0" prefWidth="225.0" text="Last empty" />
+                     <Button alignment="CENTER" contentDisplay="CENTER" layoutX="43.0" layoutY="10.0" mnemonicParsing="false" onAction="#applySingletonNus" prefHeight="49.0" prefWidth="225.0" text="Naked Single" />
+                     <Button alignment="CENTER" contentDisplay="CENTER" layoutX="43.0" layoutY="79.0" mnemonicParsing="false" onAction="#applyPairesNue" prefHeight="49.0" prefWidth="225.0" text="Naked Pairs" />
+                     <Button alignment="CENTER" contentDisplay="CENTER" layoutX="43.0" layoutY="148.0" mnemonicParsing="false" onAction="#applySingletonCache" prefHeight="93.0" prefWidth="213.0" text="Hidden Single" />
+                     <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#applyPairesCache" prefHeight="49.0" prefWidth="225.0" text="Hidden Pairs" />
+                  </children>
+               </VBox>
+               <VBox alignment="TOP_CENTER" prefHeight="464.0" prefWidth="229.0" spacing="10.0">
+                  <children>
+                     <Button alignment="CENTER" contentDisplay="CENTER" layoutX="43.0" layoutY="10.0" mnemonicParsing="false" onAction="#applyTripletsNus" prefHeight="49.0" prefWidth="225.0" text="Naked Triplets" />
+                     <Button alignment="CENTER" contentDisplay="CENTER" layoutX="43.0" layoutY="79.0" mnemonicParsing="false" onAction="#applyTripletsCachés" prefHeight="49.0" prefWidth="225.0" text="Hidden Triplets" />
+                     <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#applyKintersections" prefHeight="49.0" prefWidth="225.0" text="Intersections" />
+                     <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionXWing" prefHeight="49.0" prefWidth="225.0" text="X-Wing" />
+                     <Button mnemonicParsing="false" onAction="#onActionBacktrack" prefHeight="24.0" prefWidth="440.0" text="Backtracking" />
+                  </children>
+               </VBox>
+            </children>
+         </HBox>
+         <Button layoutX="10.0" layoutY="226.0" mnemonicParsing="false" onAction="#onActionAutoResolution" prefHeight="38.0" prefWidth="426.0" text="START AUTO-RESOLUTION" />
+      </children>
+   </VBox>
+   <HBox alignment="CENTER_LEFT" layoutX="57.0" layoutY="868.0" prefHeight="43.0" prefWidth="656.0" spacing="10.0">
+      <children>
+         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="79.0" text="NOTES:">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <BorderPane prefHeight="43.0" prefWidth="43.0">
+            <center>
+               <Label fx:id="note1" opacity="0.3" text="1" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="36.0" />
+                  </font>
+               </Label>
+            </center>
+         </BorderPane>
+         <BorderPane prefHeight="43.0" prefWidth="43.0">
+            <center>
+               <Label fx:id="note2" opacity="0.3" text="2" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="36.0" />
+                  </font>
+               </Label>
+            </center>
+         </BorderPane>
+         <BorderPane prefHeight="43.0" prefWidth="43.0">
+            <center>
+               <Label fx:id="note3" opacity="0.3" text="3" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="36.0" />
+                  </font>
+               </Label>
+            </center>
+         </BorderPane>
+         <BorderPane prefHeight="43.0" prefWidth="43.0">
+            <center>
+               <Label fx:id="note4" opacity="0.3" text="4" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="36.0" />
+                  </font>
+               </Label>
+            </center>
+         </BorderPane>
+         <BorderPane prefHeight="43.0" prefWidth="43.0">
+            <center>
+               <Label fx:id="note5" opacity="0.3" text="5" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="36.0" />
+                  </font>
+               </Label>
+            </center>
+         </BorderPane>
+         <BorderPane prefHeight="43.0" prefWidth="43.0">
+            <center>
+               <Label fx:id="note6" opacity="0.3" text="6" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="36.0" />
+                  </font>
+               </Label>
+            </center>
+         </BorderPane>
+         <BorderPane prefHeight="43.0" prefWidth="43.0">
+            <center>
+               <Label fx:id="note7" opacity="0.3" text="7" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="36.0" />
+                  </font>
+               </Label>
+            </center>
+         </BorderPane>
+         <BorderPane prefHeight="43.0" prefWidth="43.0">
+            <center>
+               <Label fx:id="note8" opacity="0.3" text="8" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="36.0" />
+                  </font>
+               </Label>
+            </center>
+         </BorderPane>
+         <BorderPane prefHeight="43.0" prefWidth="43.0">
+            <center>
+               <Label fx:id="note9" opacity="0.3" text="9" BorderPane.alignment="CENTER">
+                  <font>
+                     <Font size="36.0" />
+                  </font>
+               </Label>
+            </center>
+         </BorderPane>
+      </children>
+   </HBox>
+   <Label fx:id="affichage_fxid" alignment="CENTER" layoutX="792.0" layoutY="234.0" prefHeight="44.0" prefWidth="181.0" text="???" textAlignment="CENTER">
+      <font>
+         <Font size="24.0" />
+      </font>
+   </Label>
+   <Button layoutX="831.0" layoutY="788.0" mnemonicParsing="false" onAction="#onActionRestart" prefHeight="43.0" prefWidth="103.0" text="CLEAR" />
+   <Button layoutX="1308.0" layoutY="753.0" mnemonicParsing="false" onAction="#onActionGenerated" prefHeight="43.0" prefWidth="158.0" text="Generate grid">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Button>
+   <Label layoutX="1233.0" layoutY="720.0" text="Choose your level">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Label>
+   <ChoiceBox fx:id="choiseBox_fxid" layoutX="1144.0" layoutY="763.0" prefWidth="150.0">
+    <items>
+        <FXCollections fx:factory="observableArrayList">
+            <String fx:value="easy" />
+            <String fx:value="medium" />
+            <String fx:value="hard" />
+            <String fx:value="extreme" />
+        </FXCollections>
+    </items>
+    </ChoiceBox>
+</Pane>
